@@ -1,0 +1,85 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../neon-animation/neon-animation.html">
+<link rel="import" href="../neon-animation/neon-animations.html">
+
+<script>
+(function() {
+
+  Polymer.WidRippleTransitionBehaviorImpl = {
+    properties: {
+      fromAnimation: {
+        type: Object,
+        readOnly: true,
+        value: function () {
+          return {
+            'entry': [{
+              name: 'reverse-ripple-animation',
+              id: 'reverse-ripple',
+              toPage: this
+            }],
+            'exit': [{
+              name: 'fade-out-animation',
+              node: this.$.content,
+              timing: {
+                delay: 150,
+                duration: 0
+              }
+            }, {
+              name: 'ripple-animation',
+              id: 'ripple',
+              fromPage: this
+            }]
+          };
+        }
+      },
+
+      toAnimation: {
+        type: Object,
+        readOnly: true,
+        value: function() {
+          return {
+            'entry': [{
+              name: 'ripple-animation',
+              id: 'ripple',
+              toPage: this
+            }, {
+              name: 'fade-out-animation',
+              node: this.$.placeholder,
+              timing: {
+                delay: 200
+              }
+            }, {
+              name: 'fade-in-animation',
+              node: this.$.content,
+              timing: {
+                delay: 50
+              }
+            }],
+
+            'exit': [{
+              name: 'opaque-animation',
+              node: this.$.placeholder
+            }, {
+              name: 'fade-out-animation',
+              node: this.$.content,
+              timing: {
+                duration: 0
+              }
+            }, {
+              name: 'reverse-ripple-animation',
+              id: 'reverse-ripple',
+              fromPage: this
+            }]
+          };
+        }
+      }
+    }
+  };
+
+  Polymer.WidRippleTransitionBehavior = [
+    Polymer.NeonSharedElementAnimatableBehavior,
+    Polymer.WidRippleTransitionBehaviorImpl
+  ];
+
+})();
+</script>

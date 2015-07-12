@@ -7,7 +7,7 @@
 
   Polymer.WidRippleTransitionBehaviorImpl = {
     properties: {
-      fromAnimation: {
+      _fromRippleTransitionAnimation: {
         type: Object,
         readOnly: true,
         value: function () {
@@ -33,7 +33,7 @@
         }
       },
 
-      toAnimation: {
+      _toRippleTransitionAnimation: {
         type: Object,
         readOnly: true,
         value: function() {

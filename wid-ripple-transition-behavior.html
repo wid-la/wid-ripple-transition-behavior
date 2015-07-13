@@ -1,12 +1,19 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../neon-animation/neon-animation.html">
 <link rel="import" href="../neon-animation/neon-animations.html">
+<link rel="import" href="../wid-animation-merger-behavior/wid-animation-merger-behavior.html">
 
 <script>
 (function() {
 
   Polymer.WidRippleTransitionBehaviorImpl = {
     properties: {
+      withTransition: {
+        type: Boolean,
+        value: false
+      },
+
+
       _fromRippleTransitionAnimation: {
         type: Object,
         readOnly: true,
@@ -73,11 +80,25 @@
           };
         }
       }
+    },
+
+    observers: [
+      '_onFromRippleTransitionChanged(_fromRippleTransitionAnimation, withTransition)',
+      '_onToRippleTransitionChanged(_toRippleTransitionAnimation, withTransition)'
+    ],
+
+    _onFromRippleTransitionChanged: function (value) {
+      this._mergeAnimation(value);
+    },
+
+    _onToRippleTransitionChanged: function (value) {
+      this._mergeAnimation(value);
     }
   };
 
   Polymer.WidRippleTransitionBehavior = [
     Polymer.NeonSharedElementAnimatableBehavior,
+    Polymer.WidAnimationMergerBehavior,
     Polymer.WidRippleTransitionBehaviorImpl
   ];
 

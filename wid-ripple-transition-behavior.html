@@ -8,7 +8,20 @@
 
   Polymer.WidRippleTransitionBehaviorImpl = {
     properties: {
-      withRippleTransition: {
+      /**
+       * Use the from configuration.
+       * @type {Boolean}
+       */
+      fromRippleTransition: {
+        type: Boolean,
+        value: false
+      },
+
+      /**
+       * Use the to configuration.
+       * @type {Boolean}
+       */
+      toRippleTransition: {
         type: Boolean,
         value: false
       },
@@ -83,18 +96,18 @@
     },
 
     observers: [
-      '_onFromRippleTransitionChanged(animationConfig, _fromRippleTransitionAnimation, withRippleTransition)',
-      '_onToRippleTransitionChanged(animationConfig, _toRippleTransitionAnimation, withRippleTransition)'
+      '_onFromRippleTransitionChanged(animationConfig, _fromRippleTransitionAnimation, fromRippleTransition)',
+      '_onToRippleTransitionChanged(animationConfig, _toRippleTransitionAnimation, toRippleTransition)'
     ],
 
     _onFromRippleTransitionChanged: function () {
-      if (this.withRippleTransition) {
+      if (this.fromRippleTransition) {
         this._mergeAnimation(this._fromRippleTransitionAnimation);
       }
     },
 
-    _onToRippleTransitionChanged: function (value) {
-      if (this.withRippleTransition) {
+    _onToRippleTransitionChanged: function () {
+      if (this.toRippleTransition) {
         this._mergeAnimation(this._toRippleTransitionAnimation);
       }
     }

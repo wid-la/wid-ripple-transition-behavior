@@ -88,11 +88,15 @@
     ],
 
     _onFromRippleTransitionChanged: function () {
-      this._mergeAnimation(this._fromRippleTransitionAnimation);
+      if (this.withRippleTransition) {
+        this._mergeAnimation(this._fromRippleTransitionAnimation);
+      }
     },
 
     _onToRippleTransitionChanged: function (value) {
-      this._mergeAnimation(this._toRippleTransitionAnimation);
+      if (this.withRippleTransition) {
+        this._mergeAnimation(this._toRippleTransitionAnimation);
+      }
     }
   };
 

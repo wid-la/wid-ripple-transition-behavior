@@ -83,16 +83,16 @@
     },
 
     observers: [
-      '_onFromRippleTransitionChanged(_fromRippleTransitionAnimation, withTransition)',
-      '_onToRippleTransitionChanged(_toRippleTransitionAnimation, withTransition)'
+      '_onFromRippleTransitionChanged(animationConfig, _fromRippleTransitionAnimation, withTransition)',
+      '_onToRippleTransitionChanged(animationConfig, _toRippleTransitionAnimation, withTransition)'
     ],
 
-    _onFromRippleTransitionChanged: function (value) {
-      this._mergeAnimation(value);
+    _onFromRippleTransitionChanged: function () {
+      this._mergeAnimation(this._fromRippleTransitionAnimation);
     },
 
     _onToRippleTransitionChanged: function (value) {
-      this._mergeAnimation(value);
+      this._mergeAnimation(this._toRippleTransitionAnimation);
     }
   };
 
